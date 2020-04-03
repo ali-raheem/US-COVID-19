@@ -1,0 +1,10 @@
+<div class="overflow-auto" style="height:500px">
+  <app-state-select
+    *ngFor="let state of states"
+    [name]="state">
+  </app-state-select>
+</div>
+<div class="btn-group" role="group">
+  <button type="button" (click)="clickLoad()" class="btn btn-primary" width="100%">Load</button>
+  <button type="button" (click)="clickReset()" class="btn btn-danger" width="100%">Reset</button>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+
+<div class="col-2">
+<app-state-picker
+    (load)="onLoad()"
+    (reset)="ngOnInit()"
+    [states]="states"></app-state-picker>
+
+<ol>
+    <li *ngFor="let n of cases">{{ n }}</li>
+</ol>
+</div>
+
+<div class="col-10">
+    <div class="p-20 m-20">
+        <canvas #chartCanvas></canvas>
+    </div>
+</div>
+</div>
