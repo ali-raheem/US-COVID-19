@@ -9,7 +9,7 @@ import { DataPoint } from './DataPoint';
   providedIn: 'root'
 })
 export class DataService {
-  rawData: DataPoint[] = [];
+  rawData: DataPoint[];
   constructor() {
     this.getData();
    }
@@ -24,8 +24,17 @@ export class DataService {
   getCases(state: string): Observable<number[]> {
     return of(
       this.rawData
-        .filter((d) => {d.state == "New York"})
-        .map((d)=>{return d.cases})
+        .filter((d) => {
+          return d.state.indexOf(state) != -1})
+        .map((d)=>{return +d.cases})
+      )
+  }
+  getDates(state: string): Observable<Date[]> {
+    return of(
+      this.rawData
+        .filter((d) => {
+          return d.state.indexOf(state) != -1})
+        .map((d)=>{return d.date})
       )
   }
 }

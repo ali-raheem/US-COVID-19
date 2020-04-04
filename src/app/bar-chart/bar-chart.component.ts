@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,7 +10,9 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-
+  @Input() data: number[] = [];
+  @Input() labels: string[] = [];
+  @Input() barChartData: ChartDataSets[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -18,12 +21,15 @@ export class BarChartComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
-  barChartType: ChartType = 'bar';
+  barChartLabels: Label[] = this.labels;
+  barChartType: ChartType = 'line';
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData: ChartDataSets[] = [
-    { data: [51, 37, 60, 70, 46, 33], label: 'Best Fruits' }
-  ];
+  onLoad() {
+    this.barChartData = [
+      { data: this.data, label: 'New York' }
+      ];
+    this.barChartLabels = this.labels;
+  }
 }

@@ -5,15 +5,11 @@
     (load)="onLoad()"
     (reset)="ngOnInit()"
     [states]="states"></app-state-picker>
-
-<ol>
-    <li *ngFor="let n of cases">{{ n }}</li>
-</ol>
 </div>
 
 <div class="col-10">
     <div class="p-20 m-20">
-        <canvas #chartCanvas></canvas>
+        <app-bar-chart [data]="cases" [labels]="dates"></app-bar-chart>
     </div>
 </div>
 </div>

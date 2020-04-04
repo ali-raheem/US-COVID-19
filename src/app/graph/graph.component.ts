@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DataService } from '../data.service';
+import { ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-graph',
@@ -9,6 +10,9 @@ import { DataService } from '../data.service';
 export class GraphComponent implements OnInit {
   states: Set<string>;
   cases: number[];
+  dates: string[];
+  datasets: ChartDataSets[];
+  state: string;
 
   constructor(private dataService: DataService) { }
 
@@ -16,11 +20,26 @@ export class GraphComponent implements OnInit {
     this.dataService.getStates().subscribe(
     (states) => {this.states = states}  
     );
+    this.state = "New York";
   }
 
   onLoad() {
-    this.dataService.getCases("New York").subscribe(
-      (s) => {this.cases = s}
+    this.dataService.getCases(this.state).subscribe(
+      (s) => {this.cases = s;
+              console.log("get cases", JSON.stringify(s))}
     )
+    this.dataService.getDates(this.state).subscribe(
+      (s) => {
+        this.dates = s.map(d => {return d.toString()});
+        console.log("get dates", JSON.stringify(this.dates))
+      });
+      this.datasets = [
+        { data: this.cases, label: this.state }
+        ];
+  }
+
+  onChart() {
+
+    //this.datasets = this.labels;
   }
 }
