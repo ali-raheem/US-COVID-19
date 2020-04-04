@@ -1,5 +1,7 @@
-<input type="checkbox" id="select-{{state}}">
+<!-- <input type="checkbox" id="select-{{state}}">
 <label for="select-{{state}}"> {{state}}</label>
-<br/>
+<br/> -->
 
-
+<button class="btn btn-block" 
+        [ngClass]="{'btn-outline-secondary': !enabled, 'btn-outline-primary': enabled}"
+        (click)="toggle()">{{state}}</button>

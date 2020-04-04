@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { DataService } from '../data.service';
 import { ChartDataSets } from 'chart.js';
 
@@ -12,15 +12,15 @@ export class GraphComponent implements OnInit {
   cases: number[];
   dates: string[];
   datasets: ChartDataSets[] = [];
-  state: string;
+  state: string = "New York";
 
+  enabledStates: string[] = [];
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getStates().subscribe(
       (states) => {this.states = states}  
     );
-    this.state = "New York";
   }
 
   onLoad() {
@@ -39,6 +39,18 @@ export class GraphComponent implements OnInit {
 
   onReset() {
     this.datasets = [];
+  }
+
+  updateStates(enabledStates: string[]) {
+    this.enabledStates = enabledStates;
+    this.datasets = [];
+    this.enabledStates.forEach(
+      (d) => {
+        this.state = d;
+        this.onLoad();
+      }
+    )
+
   }
 
 }

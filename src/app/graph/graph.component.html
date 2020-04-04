@@ -5,6 +5,7 @@
     (load)="onLoad()"
     (state)="ngOnInit()"
     (reset)="onReset()"
+    (enabledStates)="updateStates($event)"
     [states]="states"></app-state-picker>
 </div>
 

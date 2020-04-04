@@ -7,10 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class StatePickerComponent implements OnInit {
-  @Input() states: string;
+  @Input() states: string[];
   @Output() load: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
   @Output() state: EventEmitter<any> = new EventEmitter();
+  @Output('enabledStates') enabledStatesEvents: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+  enabledStates: string[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -24,5 +27,11 @@ export class StatePickerComponent implements OnInit {
   }
   clickStates() {
     this.state.emit(null);
+  }
+
+  toggleState(s) {
+    this.enabledStates.push(s);
+    this.enabledStatesEvents.emit(this.enabledStates);
+    console.log("toggle", JSON.stringify(this.enabledStates));
   }
 }

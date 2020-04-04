@@ -1,7 +1,8 @@
 <div class="overflow-auto" style="height:500px">
   <app-state-select
     *ngFor="let state of states"
-    [name]="state">
+    [name]="state"
+    (toggleState)="toggleState(state)">
   </app-state-select>
 </div>
 <div class="btn-group" role="group">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-state-select',
@@ -7,9 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StateSelectComponent implements OnInit {
   @Input('name') state: string;
+  @Output() toggleState: EventEmitter<any> = new EventEmitter()
+  enabled: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  toggle() {
+    this.enabled = !this.enabled;
+    this.toggleState.emit(null);
+  }
+
 
 }
