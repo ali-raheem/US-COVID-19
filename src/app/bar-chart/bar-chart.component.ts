@@ -12,7 +12,7 @@ import { strict } from 'assert';
 export class BarChartComponent implements OnInit {
   @Input() data: number[] = [];
   @Input() labels: string[] = [];
-  @Input() barChartData: ChartDataSets[] = [];
+  @Input('datasets') barChartData: ChartDataSets[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -27,9 +27,9 @@ export class BarChartComponent implements OnInit {
   barChartPlugins = [];
 
   onLoad() {
-    this.barChartData = [
+/*     this.barChartData = [
       { data: this.data, label: 'New York' }
-      ];
+      ]; */
     this.barChartLabels = this.labels;
   }
 }

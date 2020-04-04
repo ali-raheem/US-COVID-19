@@ -11,7 +11,7 @@ export class GraphComponent implements OnInit {
   states: Set<string>;
   cases: number[];
   dates: string[];
-  datasets: ChartDataSets[];
+  datasets: ChartDataSets[] = [];
   state: string;
 
   constructor(private dataService: DataService) { }
@@ -26,16 +26,17 @@ export class GraphComponent implements OnInit {
   onLoad() {
     this.dataService.getCases(this.state).subscribe(
       (s) => {this.cases = s;
-              console.log("get cases", JSON.stringify(s))}
+              console.log("get cases", JSON.stringify(s))
+            this.datasets.push({ data: this.cases, label: this.state })}
     )
     this.dataService.getDates(this.state).subscribe(
       (s) => {
         this.dates = s.map(d => {return d.toString()});
         console.log("get dates", JSON.stringify(this.dates))
       });
-      this.datasets = [
+/*       this.datasets = [
         { data: this.cases, label: this.state }
-        ];
+        ]; */
   }
 
   onChart() {
