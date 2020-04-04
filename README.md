@@ -2,6 +2,10 @@
 
 WIP interactive chart of US COVID-19 data
 
+Running here https://ali-raheem.github.io/US-COVID-19/, doesn't work very well.
+
+
+
 ## Building
 
 ### Dependencies
