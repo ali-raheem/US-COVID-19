@@ -10,7 +10,7 @@ export class StatePickerComponent implements OnInit {
   @Input() states: string;
   @Output() load: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
-
+  @Output() state: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,5 +21,8 @@ export class StatePickerComponent implements OnInit {
   }
   clickReset() {
     this.reset.emit(null);
+  }
+  clickStates() {
+    this.state.emit(null);
   }
 }

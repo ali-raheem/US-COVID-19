@@ -1,16 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { strict } from 'assert';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent implements OnInit {
-  @Input() data: number[] = [];
+export class BarChartComponent implements OnInit, OnChanges {
   @Input() labels: string[] = [];
   @Input('datasets') barChartData: ChartDataSets[] = [];
   constructor() { }
@@ -26,10 +24,7 @@ export class BarChartComponent implements OnInit {
   barChartLegend = true;
   barChartPlugins = [];
 
-  onLoad() {
-/*     this.barChartData = [
-      { data: this.data, label: 'New York' }
-      ]; */
+  ngOnChanges() {
     this.barChartLabels = this.labels;
   }
 }

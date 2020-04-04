@@ -3,7 +3,8 @@
 <div class="col-2">
 <app-state-picker
     (load)="onLoad()"
-    (reset)="ngOnInit()"
+    (state)="ngOnInit()"
+    (reset)="onReset()"
     [states]="states"></app-state-picker>
 </div>
 

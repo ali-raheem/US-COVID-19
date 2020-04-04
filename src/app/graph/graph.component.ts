@@ -18,7 +18,7 @@ export class GraphComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getStates().subscribe(
-    (states) => {this.states = states}  
+      (states) => {this.states = states}  
     );
     this.state = "New York";
   }
@@ -34,13 +34,11 @@ export class GraphComponent implements OnInit {
         this.dates = s.map(d => {return d.toString()});
         console.log("get dates", JSON.stringify(this.dates))
       });
-/*       this.datasets = [
-        { data: this.cases, label: this.state }
-        ]; */
+
   }
 
-  onChart() {
-
-    //this.datasets = this.labels;
+  onReset() {
+    this.datasets = [];
   }
+
 }
