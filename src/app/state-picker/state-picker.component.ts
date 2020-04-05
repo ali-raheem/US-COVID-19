@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-state-picker',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./state-picker.component.css']
 })
 
-export class StatePickerComponent implements OnInit {
+export class StatePickerComponent implements OnInit, AfterViewInit {
   @Input() states: string[];
   @Output() load: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
@@ -19,18 +19,26 @@ export class StatePickerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit() {
+    this.clickStates();
+  }
   clickLoad() {
     this.load.emit(null);
   }
   clickReset() {
     this.reset.emit(null);
+    this.enabledStates = [];
   }
   clickStates() {
     this.state.emit(null);
   }
 
   toggleState(s) {
-    this.enabledStates.push(s);
+    if(!this.enabledStates.includes(s)) {
+      this.enabledStates.push(s);
+    } else {
+      this.enabledStates = this.enabledStates.filter((d) => {d.indexOf(s) == -1})
+    }
     this.enabledStatesEvents.emit(this.enabledStates);
     console.log("toggle", JSON.stringify(this.enabledStates));
   }

@@ -21,6 +21,7 @@ export class GraphComponent implements OnInit {
     this.dataService.getStates().subscribe(
       (states) => {this.states = states}  
     );
+   // this.onLoad();
   }
 
   onLoad() {
@@ -39,6 +40,7 @@ export class GraphComponent implements OnInit {
 
   onReset() {
     this.datasets = [];
+    this.enabledStates = [];
   }
 
   updateStates(enabledStates: string[]) {
